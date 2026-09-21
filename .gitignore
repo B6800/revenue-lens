@@ -2,6 +2,7 @@
 __pycache__/
 .pytest_cache/
 .streamlit/
+.idea/
 *.py[cod]
 *.egg-info/
 .env
