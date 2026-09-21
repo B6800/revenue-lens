@@ -34,6 +34,18 @@ def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
+@app.get("/")
+def index() -> dict[str, str]:
+    return {
+        "service": "Revenue Lens API",
+        "documentation": "/docs",
+        "health": "/health",
+        "overview": "/analytics/overview",
+        "products": "/analytics/products",
+        "anomalies": "/analytics/anomalies",
+    }
+
+
 @app.get("/analytics/overview")
 def get_overview() -> dict:
     return analytics().overview()
