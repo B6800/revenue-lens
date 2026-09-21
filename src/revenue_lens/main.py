@@ -5,8 +5,10 @@ from pathlib import Path
 
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
 
 from .analytics import RetailAnalytics
+from .web import DASHBOARD_HTML
 
 app = FastAPI(
     title="Revenue Lens API",
@@ -35,15 +37,8 @@ def health() -> dict[str, str]:
 
 
 @app.get("/")
-def index() -> dict[str, str]:
-    return {
-        "service": "Revenue Lens API",
-        "documentation": "/docs",
-        "health": "/health",
-        "overview": "/analytics/overview",
-        "products": "/analytics/products",
-        "anomalies": "/analytics/anomalies",
-    }
+def index() -> HTMLResponse:
+    return HTMLResponse(DASHBOARD_HTML)
 
 
 @app.get("/analytics/overview")
