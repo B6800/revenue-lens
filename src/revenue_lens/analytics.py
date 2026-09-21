@@ -6,7 +6,7 @@ from pathlib import Path
 import pandas as pd
 from sklearn.ensemble import IsolationForest
 
-from revenue_lens.demo_data import generate_demo_dataset
+from .demo_data import generate_demo_dataset
 
 REQUIRED_COLUMNS = {
     "transaction_id", "transaction_date", "customer_id", "product_id", "product_name",
@@ -89,4 +89,3 @@ class RetailAnalytics:
             }
             for row in flagged.itertuples(index=False)
         ]
-

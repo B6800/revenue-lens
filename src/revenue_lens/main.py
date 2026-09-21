@@ -1,10 +1,12 @@
+import os
+import tempfile
 from functools import lru_cache
 from pathlib import Path
 
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 
-from revenue_lens.analytics import RetailAnalytics
+from .analytics import RetailAnalytics
 
 app = FastAPI(
     title="Revenue Lens API",
@@ -21,6 +23,8 @@ app.add_middleware(
 
 @lru_cache
 def analytics() -> RetailAnalytics:
+    if os.getenv("VERCEL"):
+        return RetailAnalytics(Path(tempfile.gettempdir()) / "revenue_lens" / "demo_transactions.csv")
     root = Path(__file__).resolve().parents[2]
     return RetailAnalytics(root / "data" / "demo_transactions.csv")
 
@@ -43,4 +47,3 @@ def get_top_products(limit: int = Query(default=5, ge=1, le=20)) -> list[dict]:
 @app.get("/analytics/anomalies")
 def get_anomalies(limit: int = Query(default=10, ge=1, le=50)) -> list[dict]:
     return analytics().anomalies(limit)
-
