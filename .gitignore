@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.streamlit/
+*.py[cod]
+*.egg-info/
+.env
+coverage.xml
+htmlcov/
+data/demo_transactions.csv
