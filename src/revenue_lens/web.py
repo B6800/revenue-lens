@@ -33,8 +33,6 @@ DASHBOARD_HTML = """<!doctype html>
     td:last-child, th:last-child { text-align: right; }
     tr:last-child td { border-bottom: 0; }
     .badge { color: #1a1d12; background: var(--amber); border-radius: 999px; padding: 4px 8px; font-size: .72rem; font-weight: 800; }
-    footer { color: var(--muted); font-size: .85rem; margin-top: 24px; }
-    a { color: var(--blue); }
     @media (max-width: 820px) { header { flex-direction: column; } .metrics { grid-template-columns: repeat(2, 1fr); } .layout { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -67,7 +65,6 @@ DASHBOARD_HTML = """<!doctype html>
         <table><thead><tr><th>Transaction</th><th>Product</th><th>Revenue</th></tr></thead><tbody id="anomalies"></tbody></table>
       </article>
     </section>
-    <footer>Built with FastAPI, pandas, and scikit-learn · <a href="/docs">Explore the API documentation</a></footer>
   </main>
   <script>
     const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
